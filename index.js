@@ -14,12 +14,12 @@ let c = new Crawler({
 module.exports = function (opts) {
 
     // 设置参数
-    opts = _.extend({
-        moduleType: opts.moduleType || 'chengshi',
-        dateAfter: new Date().valueOf() - 86400000,
+    opts = Object.assign({
+        moduleType: 'chengshi',
+        dateAfter: 0,
     }, opts);
 
-    let promise = new Promise(function (resolve) {
+    return new Promise(function (resolve,reject) {
         let newsList = [];  //新闻内容的列表
 
         c.queue([{
@@ -36,19 +36,22 @@ module.exports = function (opts) {
                 let totalPage = Number($('#displaypagenum a').eq($('#displaypagenum a').length - 3).text());    // 有多少页的新闻列表
                 let isResolve = totalPage - 1;  // 异步请求时，当状态码为0时，触发回调。
 
+                if($('.hzwNews_L_link').length===0){
+                    reject('获取不到新闻列表页的页码');
+                }
+
                 // 收集第一页的新闻超链接
                 $('.hzwNews_L_link').each(function () {
                     let timeStr = _.str.trim(this.nextSibling.nodeValue);
 
                     if (!opts.dateAfter) {
                         newsList.push($(this).attr('href'));
-                        return false;
+                    }else{
+                        if (moment(timeStr, 'YYYY-MM-DD  HH:mm').valueOf() > opts.dateAfter) {
+                            newsList.push($(this).attr('href'));
+                        }
                     }
-
-                    if (moment(timeStr, 'YYYY-MM-DD  HH:mm').valueOf() > opts.dateAfter) {
-                        newsList.push($(this).attr('href'));
-                    }
-
+                    
                 });
 
                 // 收集其它新闻列表页的超链接
@@ -71,11 +74,10 @@ module.exports = function (opts) {
 
                                 if (!opts.dateAfter) {
                                     newsList.push($(this).attr('href'));
-                                    return false;
-                                }
-
-                                if (moment(timeStr, 'YYYY-MM-DD  HH:mm').valueOf() > opts.dateAfter) {
-                                    newsList.push($(this).attr('href'));
+                                }else{
+                                    if (moment(timeStr, 'YYYY-MM-DD  HH:mm').valueOf() > opts.dateAfter) {
+                                        newsList.push($(this).attr('href'));
+                                    }
                                 }
                             });
 
@@ -91,13 +93,5 @@ module.exports = function (opts) {
                 done();
             }
         }]);
-    });
-
-    return co(function*() {
-        return yield promise;
-    }).then(function (value) {
-        return value;
-    }, function (err) {
-        console.error(err.stack);
     });
 };
