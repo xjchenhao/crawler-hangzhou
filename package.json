@@ -15,5 +15,12 @@
   "bugs": {
     "url": "https://github.com/xjchenhao/crawler-hangzhou/issues"
   },
-  "homepage": "https://github.com/xjchenhao/crawler-hangzhou#readme"
+  "homepage": "https://github.com/xjchenhao/crawler-hangzhou#readme",
+  "dependencies": {
+    "co": "^4.6.0",
+    "crawler": "^1.0.5",
+    "moment": "^2.18.1",
+    "underscore": "^1.8.3",
+    "underscore.string": "^3.3.4"
+  }
 }
