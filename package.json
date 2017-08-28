@@ -4,7 +4,7 @@
   "description": "A web spider of hangzhou",
   "main": "index.js",
   "scripts": {
-    "test": "mocha ./test/index.test.js "
+    "test": "mocha ./test/*.test.js "
   },
   "repository": {
     "type": "git",

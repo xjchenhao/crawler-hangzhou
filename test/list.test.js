@@ -7,7 +7,7 @@ const crawler = require('../list');
 const _ = require('underscore');
 
 
-describe('test/showcase.test.js', () => {
+describe('test/showcase.test.js，获取新闻列表', () => {
 
     it('默认值', function*() {
         yield crawler().then((value) => {
