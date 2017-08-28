@@ -10,14 +10,6 @@ const _ = require('underscore');
 
 describe('test/list.test.js，获取新闻列表', () => {
 
-    it('默认值', function*() {
-        yield crawler().then((value) => {
-            assert(value.length > 0, `获取到${value.length}条数据`);
-        }).catch((err) => {
-            assert(false, err);
-        });
-    });
-
     it('404', function*() {
         yield crawler({
             moduleType: 'aaa'
@@ -32,7 +24,7 @@ describe('test/list.test.js，获取新闻列表', () => {
         yield crawler({
             moduleType: 'jingji'
         }).then((value) => {
-            assert(value.length > 0, `获取到${value.length}条数据`);
+            assert(value.length > 0);
         }).catch((err) => {
             assert(false, err);
         });
@@ -43,11 +35,42 @@ describe('test/list.test.js，获取新闻列表', () => {
             moduleType: 'chengshi',
             dateAfter: moment(moment().format('YYYY-MM-DD'), 'YYYY-MM-DD').valueOf()
         }).then((value) => {
-            assert(value.length > 0, `获取到${value.length}条数据`);
+            assert(value.length > 0);
         }).catch((err) => {
             assert(false, err);
         });
     });
 
-    // todo:板块测试没写全
+    it('获取一天内的"社会"板块新闻列表', function*() {
+        yield crawler({
+            moduleType: 'shehui',
+            dateAfter: moment(moment().format('YYYY-MM-DD'), 'YYYY-MM-DD').valueOf()
+        }).then((value) => {
+            assert(value.length > 0);
+        }).catch((err) => {
+            assert(false, err);
+        });
+    });
+
+    it('获取一天内的"文体"板块新闻列表', function*() {
+        yield crawler({
+            moduleType: 'wenti',
+            dateAfter: moment(moment().format('YYYY-MM-DD'), 'YYYY-MM-DD').valueOf()
+        }).then((value) => {
+            assert(value.length > 0);
+        }).catch((err) => {
+            assert(false, err);
+        });
+    });
+
+    it('获取一天内的"科教"板块新闻列表', function*() {
+        yield crawler({
+            moduleType: 'kejiao',
+            dateAfter: moment(moment().format('YYYY-MM-DD'), 'YYYY-MM-DD').valueOf()
+        }).then((value) => {
+            assert(value.length > 0);
+        }).catch((err) => {
+            assert(false, err);
+        });
+    });
 });

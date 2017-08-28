@@ -15,12 +15,17 @@ module.exports = function (opts) {
 
     // 设置参数
     opts = Object.assign({
-        moduleType: 'chengshi',
+        moduleType: '',
         dateAfter: 0,
     }, opts);
 
     return new Promise(function (resolve, reject) {
         let newsList = [];  //新闻内容的列表
+
+        if (!opts.moduleType) {
+            reject('moduleType是必填项');
+            return false;
+        }
 
         c.queue([{
             uri: `http://hznews.hangzhou.com.cn/${opts.moduleType}/index.htm`,
