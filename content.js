@@ -42,7 +42,7 @@ let newsContent = function (newsUrl) {
                     resolve({
                         title: $('.hzwRP_lname05').text(),
                         content: $('.hzwRP_lname06').text(),
-                        date: moment($sourceAndDate[0].firstChild.data, 'YYYY-MM-DD HH:mm:ss  ').format('YYYY-MM-DD HH:mm:ss'),
+                        date: moment($sourceAndDate[0].firstChild.data, 'YYYY-MM-DD HH:mm:ss  ').valueOf(),
                         source_name: $sourceAndDate.find('a').text(),
                         source_href: $sourceAndDate.find('a').attr('href'),
                         cover_picture: test.length ? url.resolve(newsUrl, test.attr('src')) : '',
