@@ -2,7 +2,7 @@ const crawler = require('../index');
 const moment = require('moment');
 
 crawler({
-    moduleType: 'shehui',
+    moduleType: '',
     dateAfter: moment(moment().format('YYYY-MM-DD'), 'YYYY-MM-DD').valueOf()
 }).then((value) => {
     console.log(value.map((obj) => {

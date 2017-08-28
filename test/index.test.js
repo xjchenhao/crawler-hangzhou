@@ -30,4 +30,15 @@ describe('test/index.test.js，获取新闻内容', () => {
             assert(false, err);
         });
     });
+
+    it('获取一天内"所有"的新闻内容', function*() {
+        yield crawler({
+            moduleType: '',
+            dateAfter: moment(moment().format('YYYY-MM-DD'), 'YYYY-MM-DD').valueOf()
+        }).then((value) => {
+            assert(value.length > 0);
+        }).catch((err) => {
+            assert(false, err);
+        });
+    });
 });
