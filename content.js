@@ -28,12 +28,12 @@ let newsContent = function (newsUrl) {
 
                 let $ = res.$;
 
-                if($('title').text()==='404错误信息'){
+                if ($('title').text() === '404错误信息') {
                     reject('404错误');
                     return false;
                 }
 
-                try{
+                try {
 
                     let $sourceAndDate = $('.hzwRP_lname05').parent().next().next().next().find('td');
 
@@ -45,10 +45,10 @@ let newsContent = function (newsUrl) {
                         date: moment($sourceAndDate[0].firstChild.data, 'YYYY-MM-DD HH:mm:ss  ').format('YYYY-MM-DD HH:mm:ss'),
                         source_name: $sourceAndDate.find('a').text(),
                         source_href: $sourceAndDate.find('a').attr('href'),
-                        cover_picture: url.resolve(newsUrl, test.attr('src')),
+                        cover_picture: test.length ? url.resolve(newsUrl, test.attr('src')) : '',
                     });
-                }catch (err){
-                    reject('dom元素有调整');
+                } catch (err) {
+                    reject('dom元素有调整:' + newsUrl);
                 }
 
                 done();
