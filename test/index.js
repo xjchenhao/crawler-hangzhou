@@ -1,4 +1,4 @@
-const crawler = require('../list');
+const crawler = require('../index');
 const moment = require('moment');
 
 crawler({
