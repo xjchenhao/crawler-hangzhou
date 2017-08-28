@@ -33,7 +33,7 @@ let crawler = function (opts) {
 };
 
 let arrConcat = function (arr, type) {
-    return arr.concat(arr.map((obj) => {
+    return this.concat(arr.map((obj) => {
         return Object.assign(obj, {
             type: type
         })
@@ -50,35 +50,35 @@ module.exports = function (opts) {
                 moduleType: 'jingji',
                 dateAfter: opts.dateAfter
             }).then((value) => {
-                arr = arrConcat(value, 'jingji');
+                arr = arrConcat.call(arr, value, 'jingji');
             });
 
             yield crawler({
                 moduleType: 'chengshi',
                 dateAfter: opts.dateAfter
             }).then((value) => {
-                arr = arrConcat(value, 'chengshi');
+                arr = arrConcat.call(arr, value, 'chengshi');
             });
 
             yield crawler({
                 moduleType: 'shehui',
                 dateAfter: opts.dateAfter
             }).then((value) => {
-                arr = arrConcat(value, 'shehui');
+                arr = arrConcat.call(arr, value, 'shehui');
             });
 
             yield crawler({
                 moduleType: 'wenti',
                 dateAfter: opts.dateAfter
             }).then((value) => {
-                arr = arrConcat(value, 'wenti');
+                arr = arrConcat.call(arr, value, 'wenti');
             });
 
             yield crawler({
                 moduleType: 'kejiao',
                 dateAfter: opts.dateAfter
             }).then((value) => {
-                arr = arrConcat(value, 'kejiao');
+                arr = arrConcat.call(arr, value, 'kejiao');
             });
 
             return arr;
