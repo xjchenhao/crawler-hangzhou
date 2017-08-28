@@ -1,13 +1,10 @@
-const crawler = require('../index');
-
-const co = require('co');
-const _ = require('underscore');
+const crawler = require('../list');
+const moment = require('moment');
 
 crawler({
-    moduleType: 'jingji'
+    dateAfter: moment('2017-08-28 00:00:00', 'YYYY-MM-DD  HH:mm:ss').valueOf()
 }).then((value) => {
-    console.log(_.isArray(value));
-    console.log(value.length > 0);
+    console.log(value);
 }).catch((err)=>{
     console.log(err);
 });

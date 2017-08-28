@@ -3,7 +3,7 @@ const mocha = require('mocha');
 const coMocha = require('co-mocha');
 coMocha(mocha);
 
-const crawler = require('../index');
+const crawler = require('../list');
 const _ = require('underscore');
 
 
@@ -11,8 +11,7 @@ describe('test/showcase.test.js', () => {
 
     it('默认值', function*() {
         yield crawler().then((value) => {
-            assert(_.isArray(value));
-            assert(value.length > 0);
+            assert(value.length > 0, `获取到${value.length}条数据`);
         }).catch((err) => {
             assert(false, err);
         });
@@ -22,8 +21,7 @@ describe('test/showcase.test.js', () => {
         yield crawler({
             moduleType: 'jingjis'
         }).then((value) => {
-            assert(_.isArray(value));
-            assert(value.length > 0);
+            assert(value.length > 0, `获取到${value.length}条数据`);
         }).catch((err) => {
             assert(false, err);
         });
@@ -33,8 +31,7 @@ describe('test/showcase.test.js', () => {
         yield crawler({
             dateAfter: new Date().valueOf() - 86400000
         }).then((value) => {
-            assert(_.isArray(value));
-            assert(value.length > 0);
+            assert(value.length > 0, `获取到${value.length}条数据`);
         }).catch((err) => {
             assert(false, err);
         });
