@@ -3,7 +3,9 @@
 [![NPM version][npm-image]][npm-url]
 [![npm download][download-image]][download-url]
 
+[npm-image]: https://img.shields.io/npm/v/crawler-hangzhou.svg?style=flat-square
 [npm-url]: https://npmjs.org/package/crawler-hangzhou
+[download-image]: https://img.shields.io/npm/dm/crawler-hangzhou.svg?style=flat-square
 [download-url]: https://npmjs.org/package/crawler-hangzhou
 
 [杭州网](http://hznews.hangzhou.com.cn/index.htm)的新闻爬虫
