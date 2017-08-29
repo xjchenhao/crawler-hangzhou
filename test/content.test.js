@@ -21,7 +21,7 @@ describe('test/content.test.js，获取新闻内容', () => {
         yield crawler('http://hznews.hangzhou.com.cn/chengshi/content/2017-08/28/content_663915003.htm').then((value) => {
             assert(false, '错误的网址，不可能进来');
         }).catch((err) => {
-            assert(err === '404错误', err);
+            assert(err === '404', err);
         });
     });
 });

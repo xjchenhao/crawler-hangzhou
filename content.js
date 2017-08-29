@@ -29,7 +29,7 @@ let newsContent = function (newsUrl) {
                 let $ = res.$;
 
                 if ($('title').text() === '404错误信息') {
-                    reject('404错误');
+                    reject('404', newsUrl);
                     return false;
                 }
 

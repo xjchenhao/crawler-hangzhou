@@ -12,18 +12,27 @@ let crawler = function (opts) {
             let newsContentMapList = [];
             let total = value.length;
             let counter = 0;
+            let callback=function(){
+                counter++;
+
+                if (counter === total) {
+                    resolve(newsContentMapList);
+                }
+            };
 
             value.forEach((newsUrl) => {
 
                 crawlerContent(newsUrl).then((newsContent) => {
                     newsContentMapList.push(newsContent);
 
-                    counter++;
-                    if (counter === total) {
-                        resolve(newsContentMapList);
+                    callback();
+                }).catch((err, msg) => {
+                    if (err === '404') {
+                        callback();
+                        return false;
                     }
-                }).catch((err) => {
-                    reject(err);
+
+                    reject(err, msg);
                 });
             })
         }).catch((err) => {

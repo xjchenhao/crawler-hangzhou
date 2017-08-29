@@ -16,7 +16,7 @@ describe('test/index.test.js，获取新闻内容', () => {
         }).then((value) => {
             assert(false, '错误的类型，不可能进来');
         }).catch((err) => {
-            assert(err === '404错误', err);
+            assert(err === '404', err);
         });
     });
 
