@@ -22,7 +22,7 @@ let crawler = function (opts) {
 
             value.forEach((newsUrl) => {
 
-                crawlerContent(newsUrl).then((newsContent) => {
+                crawlerContent(newsUrl,opts.isHtml).then((newsContent) => {
                     newsContentMapList.push(newsContent);
 
                     callback();
@@ -55,38 +55,33 @@ module.exports = function (opts) {
     } else {
         let arr = [];
         return co(function *() {
-            yield crawler({
-                moduleType: 'jingji',
-                dateAfter: opts.dateAfter
-            }).then((value) => {
+            yield crawler(Object.assign(opts,{
+              moduleType: 'jingji',
+            })).then((value) => {
                 arr = arrConcat.call(arr, value, 'jingji');
             });
 
-            yield crawler({
-                moduleType: 'chengshi',
-                dateAfter: opts.dateAfter
-            }).then((value) => {
+            yield crawler(Object.assign(opts,{
+              moduleType: 'chengshi',
+            })).then((value) => {
                 arr = arrConcat.call(arr, value, 'chengshi');
             });
 
-            yield crawler({
-                moduleType: 'shehui',
-                dateAfter: opts.dateAfter
-            }).then((value) => {
+            yield crawler(Object.assign(opts,{
+              moduleType: 'shehui',
+            })).then((value) => {
                 arr = arrConcat.call(arr, value, 'shehui');
             });
 
-            yield crawler({
-                moduleType: 'wenti',
-                dateAfter: opts.dateAfter
-            }).then((value) => {
+            yield crawler(Object.assign(opts,{
+              moduleType: 'wenti',
+            })).then((value) => {
                 arr = arrConcat.call(arr, value, 'wenti');
             });
 
-            yield crawler({
-                moduleType: 'kejiao',
-                dateAfter: opts.dateAfter
-            }).then((value) => {
+            yield crawler(Object.assign(opts,{
+              moduleType: 'kejiao',
+            })).then((value) => {
                 arr = arrConcat.call(arr, value, 'kejiao');
             });
 

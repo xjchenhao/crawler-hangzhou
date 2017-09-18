@@ -22,7 +22,7 @@ const crawler = require('crawler-hangzhou');    // 引入爬虫
 const moment = require('moment');
 
 crawler({
-    moduleType: '', // 新闻类型，填空为全部。具体的有['jingji','chengshi','shehui','wenti','kejiao']，六个类型
+    moduleType: '', // 新闻类型，填空为全部。具体的有['jingji','chengshi','shehui','wenti','kejiao']，五个类型
     dateAfter: moment(moment().format('YYYY-MM-DD'), 'YYYY-MM-DD').valueOf()    // 当天
 }).then((value) => {
 
