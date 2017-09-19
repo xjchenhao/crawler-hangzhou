@@ -12,7 +12,7 @@ let crawler = function (opts) {
             let newsContentMapList = [];
             let total = value.length;
             let counter = 0;
-            let callback=function(){
+            let callback = function () {
                 counter++;
 
                 if (counter === total) {
@@ -20,9 +20,15 @@ let crawler = function (opts) {
                 }
             };
 
+            // 列表无数据时
+            if (total === 0) {
+                resolve([]);
+                return false;
+            }
+
             value.forEach((newsUrl) => {
 
-                crawlerContent(newsUrl,opts.isHtml).then((newsContent) => {
+                crawlerContent(newsUrl, opts.isHtml).then((newsContent) => {
                     newsContentMapList.push(newsContent);
 
                     callback();
@@ -55,32 +61,32 @@ module.exports = function (opts) {
     } else {
         let arr = [];
         return co(function *() {
-            yield crawler(Object.assign(opts,{
-              moduleType: 'jingji',
+            yield crawler(Object.assign(opts, {
+                moduleType: 'jingji',
             })).then((value) => {
                 arr = arrConcat.call(arr, value, 'jingji');
             });
 
-            yield crawler(Object.assign(opts,{
-              moduleType: 'chengshi',
+            yield crawler(Object.assign(opts, {
+                moduleType: 'chengshi',
             })).then((value) => {
                 arr = arrConcat.call(arr, value, 'chengshi');
             });
 
-            yield crawler(Object.assign(opts,{
-              moduleType: 'shehui',
+            yield crawler(Object.assign(opts, {
+                moduleType: 'shehui',
             })).then((value) => {
                 arr = arrConcat.call(arr, value, 'shehui');
             });
 
-            yield crawler(Object.assign(opts,{
-              moduleType: 'wenti',
+            yield crawler(Object.assign(opts, {
+                moduleType: 'wenti',
             })).then((value) => {
                 arr = arrConcat.call(arr, value, 'wenti');
             });
 
-            yield crawler(Object.assign(opts,{
-              moduleType: 'kejiao',
+            yield crawler(Object.assign(opts, {
+                moduleType: 'kejiao',
             })).then((value) => {
                 arr = arrConcat.call(arr, value, 'kejiao');
             });

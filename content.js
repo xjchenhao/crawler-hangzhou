@@ -33,8 +33,6 @@ let newsContent = function (newsUrl, isHtml = false) {
                     return false;
                 }
 
-                // try {
-
                 let $sourceAndDate = $('.hzwRP_lname05').parent().next().next().next().find('td');
 
                 let resultObj = {
@@ -94,18 +92,6 @@ let newsContent = function (newsUrl, isHtml = false) {
                         resolve(resultObj);
                     }
                 }
-
-                // resolve({
-                //     title: $('.hzwRP_lname05').text(),
-                //     content: isHtml ? $('.hzwRP_lname06').html() : $('.hzwRP_lname06').text(),
-                //     date: moment($sourceAndDate[0].firstChild.data, 'YYYY-MM-DD HH:mm:ss  ').valueOf(),
-                //     source_name: $sourceAndDate.find('a').text(),
-                //     source_href: $sourceAndDate.find('a').attr('href'),
-                //     img_list: imgList
-                // });
-                // } catch (err) {
-                //     reject('dom元素有调整:' + newsUrl);
-                // }
 
                 done();
             }

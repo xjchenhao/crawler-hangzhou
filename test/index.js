@@ -4,7 +4,7 @@ const moment = require('moment');
 crawler({
   moduleType: '',
   isHtml: false,
-  dateAfter: moment(moment().format('YYYY-MM-DD'), 'YYYY-MM-DD').valueOf()
+  dateAfter: 1505790249000
 }).then((value) => {
   console.log(value.map((obj) => {
     return Object.assign(obj, {
